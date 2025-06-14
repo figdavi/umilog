@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from datetime import datetime
 from pydantic import BaseModel
+from pathlib import Path
 
 app = FastAPI()
 
@@ -15,6 +16,9 @@ def normalize_soil_moisture(soil_moisture: int) -> float:
 @app.post("/log/")
 def log(sensor_data: SensorData):
     file_test = "sensor_data/output.txt"
+    
+    Path(file_test).parent.mkdir(parents=True, exist_ok=True)
+    
 
     cur_time = datetime.now().replace(microsecond=0).isoformat()
     
