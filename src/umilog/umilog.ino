@@ -9,7 +9,7 @@ WiFiClient wifiClient;
 const char* ssid = "XXXX";
 const char* password = "****";
 
-const char* server = "http://192.168.1.26:8000/log/";
+const char* server = "http://192.168.1.26:8000/log";
 
 void setup() {
   Serial.begin(115200);
