@@ -1,0 +1,51 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Poetry
+poetry.lock
+
+# Virtualenvs (especially when using pyenv + poetry with local venvs)
+.env/
+.venv/
+venv/
+ENV/
+env/
+.venv.bak/
+
+# pyenv local versions
+.python-version
+
+# VS Code and other IDEs/editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and dumps
+*.log
+*.sqlite3
+*.db
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# FastAPI auto-generated docs cache (if used)
+__fastapi_cache__/
+
+# Test & coverage files
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+.cache/
+
+# Custom folders
+sensor_data/
