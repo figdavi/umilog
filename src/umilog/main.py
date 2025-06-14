@@ -19,7 +19,7 @@ def format_soil_moisture(soil_moisture: int) -> float:
     Returns:
         float: formatted soil moisture
     """    
-    return 1 - round((soil_moisture / MAX_SOIL_MOISTURE), 2)
+    return round(1 - (soil_moisture / MAX_SOIL_MOISTURE), 2)
 
 @app.post("/log/")
 def log(sensor_data: SensorData):
