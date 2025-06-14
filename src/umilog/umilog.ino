@@ -9,7 +9,7 @@ WiFiClient wifiClient;
 const char* ssid = "XXXX";
 const char* password = "****";
 
-const char* server = "http://192.168.1.26:8000/log";
+const char* server = "http://192.168.1.26:8000/log/";
 
 void setup() {
   Serial.begin(115200);
@@ -23,9 +23,9 @@ void setup() {
 }
 
 void loop() {
-  int soil_moisture = analogRead(SENSOR_PIN);
+  int soilMoisture = analogRead(SENSOR_PIN);
   Serial.print("Soil Moisture: ");
-  Serial.println(soil_moisture);
+  Serial.println(soilMoisture);
 
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
@@ -33,7 +33,7 @@ void loop() {
     http.begin(wifiClient, server);
     http.addHeader("Content-Type", "application/json");
 
-    String payload = "{\"soil_moisture\": " + String(soil_moisture) + "}";
+    String payload = "{\"soil_moisture\": " + String(soilMoisture) + "}";
 
     int httpCode = http.POST(payload);
     String response = http.getString();
