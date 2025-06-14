@@ -10,8 +10,16 @@ class SensorData(BaseModel):
 
 MAX_SOIL_MOISTURE = 1023
 
-def normalize_soil_moisture(soil_moisture: int) -> float:
-  return soil_moisture / MAX_SOIL_MOISTURE
+def format_soil_moisture(soil_moisture: int) -> float:
+    """Normalizes and inverts the range of the soil moisture value, since 0 means wet and 1023 means dry
+
+    Args:
+        soil_moisture (int): raw soil moisture data
+
+    Returns:
+        float: formatted soil moisture
+    """    
+    return 1 - round((soil_moisture / MAX_SOIL_MOISTURE), 2)
 
 @app.post("/log/")
 def log(sensor_data: SensorData):
@@ -22,10 +30,10 @@ def log(sensor_data: SensorData):
 
     cur_time = datetime.now().replace(microsecond=0).isoformat()
     
-    normalized_soil_moisture = normalize_soil_moisture(sensor_data.soil_moisture)
+    formatted_soil_moisture = format_soil_moisture(sensor_data.soil_moisture)
     
     with open(file_test, "a+") as f:
-        f.write(f"soil moisture percentage at {cur_time} is {normalized_soil_moisture}\n")
+        f.write(f"soil moisture percentage at {cur_time} is {formatted_soil_moisture}\n")
     return {"status": "logged"}
 
 @app.get("/")
