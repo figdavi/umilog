@@ -33,18 +33,18 @@ This project contains both the backend and the .ino file for the ESP8266.
 
 ### Backend (FastAPI + SQLite)
 
-#### 1. Clone the repository
+1. Clone the repository
 ```bash
 git clone https://github.com/figdavi/umilog.git
 cd umilog
 ```
 
-#### 2. Build the docker image
+2. Build the docker image
 ```bash
 docker build -t umilog .
 ```
 
-#### 3. Run the container fowarding on port 8000
+3. Run the container fowarding on port 8000
 ```bash
 docker run -p 8000:8000 umilog
 ```
@@ -53,15 +53,13 @@ docker run -p 8000:8000 umilog
 
 #### Arduino Library Requirements
 
-Install these via the Arduino Library Manager (**Tools > Manage Libraries...**):
+All libraries are already part of the core package for the ESP8266 board. 
 
-```cpp
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-#include <WiFiClient.h>
-```
+On the Arduino IDE:
 
+1. Go to `Tools` > `Board` > `Boards Manager`
 
+2. Search for ESP8266 and install the `ESP8266 by ESP8266 Community` package
 
 #### Flashing the Microcontroller
 
