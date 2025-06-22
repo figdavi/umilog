@@ -12,7 +12,7 @@ const char* password = "<YOUR_WIFI_PASSWORD>";
 const char* server = "http://<YOUR_LOCAL_SERVER_IPv4>:8000/log";
 
 // Send sensor data every 30 minutes
-const int log_delay = 30*60*1000
+const int log_delay = 30*60*1000;
 
 void setup() {
   Serial.begin(115200);

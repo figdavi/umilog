@@ -1,10 +1,5 @@
-# TODO: 
-# - add readme
-# - check commits for sensitive data
-# - upload to github (public)
-
 from fastapi import FastAPI, HTTPException
-from umilog.database import create_sensor_table, log_sensor_data
+from .database import create_sensor_table, log_sensor_data
 from pydantic import BaseModel
 
 class SensorData(BaseModel):

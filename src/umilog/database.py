@@ -3,9 +3,9 @@ import sqlite3
 from datetime import datetime
 
 DATA_DIR = 'data'
-DB_FILE_NAME = 'sensor.sqlite'
+DB_FILE_NAME = 'sensor.db'
 
-DB_PATH = Path(__file__).parents[1] / DATA_DIR / DB_FILE_NAME
+DB_PATH = Path(__file__).parent / DATA_DIR / DB_FILE_NAME
 
 def get_connection():
     return sqlite3.connect(DB_PATH)

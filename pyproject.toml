@@ -13,6 +13,7 @@ dependencies = [
 
 [tool.poetry]
 packages = [{include = "umilog", from = "src"}]
+package-mode = false
 
 [tool.poetry.scripts]
 sunnyday = "sunnyday.main:main"
