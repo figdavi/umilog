@@ -3,7 +3,7 @@ import sqlite3
 from datetime import datetime
 
 DATA_DIR = 'data'
-DB_FILE_NAME = 'sensor.sqlite'
+DB_FILE_NAME = 'sensor.sqlite3'
 
 DB_PATH = Path(__file__).parent / DATA_DIR / DB_FILE_NAME
 

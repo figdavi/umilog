@@ -5,7 +5,7 @@ __pycache__/
 *.pyd
 *.pyc
 
-# Virtualenvs (especially when using pyenv + poetry with local venvs)
+# Virtualenvs
 .env/
 .venv/
 venv/
