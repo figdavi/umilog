@@ -1,5 +1,4 @@
 # TODO: 
-# - setup docker
 # - add readme
 # - check commits for sensitive data
 # - upload to github (public)
