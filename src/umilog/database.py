@@ -15,7 +15,7 @@ def get_connection():
 def create_sensor_table():
     with get_connection() as conn:
         conn.execute("""CREATE TABLE IF NOT EXISTS sensor_data (
-                        datetime TEXT
+                        datetime TEXT,
                         soil_moisture REAL
                     )""")
 
