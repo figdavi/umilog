@@ -7,12 +7,17 @@ HTTPClient http;
 
 #define SENSOR_PIN A0
 
-const char* ssid = "<YOUR_WIFI_SSID>";
-const char* password = "<YOUR_WIFI_PASSWORD>";
-const char* server = "http://<YOUR_LOCAL_SERVER_IPv4>:8000/log";
+#include "secrets.h" // REMOVE THIS LINE
 
-// Send sensor data every 30 minutes
-const int log_delay = 30*60*1000;
+const char* ssid = WIFI_SSID; // Replace with your WiFi SSID
+const char* password = WIFI_PASSWORD; // Replace with your WiFi password
+const char* server = SERVER_URL_WITH_LOG; /* Replace with your server url
+                                              + port 8000 + log endpoint
+                                              (e.g., http://192.168.1.26:8000/log)
+                                          */
+
+// Send sensor data every 5 seconds
+const int log_delay = 5*1000;
 
 void setup() {
   Serial.begin(115200);

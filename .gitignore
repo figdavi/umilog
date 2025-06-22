@@ -45,4 +45,7 @@ coverage.xml
 .cache/
 
 # Custom folders
-sensor_data/
+data/
+
+# Sensitive data
+secrets.h

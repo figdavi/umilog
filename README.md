@@ -8,30 +8,35 @@ This project contains both the backend and the .ino file for the ESP8266.
 <img src="simple_diagram.png" width=500>
 
 ## Project structure
-```
+```tree
+.
 │   .gitignore
 │   Dockerfile
 │   poetry.lock
-│   pyproject.toml      
+│   pyproject.toml
 │   README.md
 │
-└───src\umilog
-    │   database.py    # sqlite setup and CRUD functions
-    │   main.py        # Logging and app routes logic
-    │   umilog.ino     # ESP8266 flashable code
+├── data/       # Sensor data
+│
+└── src/umilog/
+    │   database.py     # SQLite setup and CRUD
+    │   main.py         # FastAPI app and routes
+    │   umilog.ino      # ESP8266 flashable code
     │   __init__.py
-    │
-    └───data           # sensor data
-```
 
-## Installation
+
+```
+- Note: the `data/` folder will be created automatically on first run to store sensor data, along with the `sensor.sqlite3` file (SQLite DB).
+
+
+## Run locally
 
 ### Requirements
 
 - Docker ([Download Page](https://docs.docker.com/get-docker/))
 - Arduino IDE (for uploading the `.ino` file) ([Download Page](https://www.arduino.cc/en/software/))
 
-### Backend (FastAPI + SQLite)
+### Backend
 
 1. Clone the repository
 ```bash
@@ -39,14 +44,9 @@ git clone https://github.com/figdavi/umilog.git
 cd umilog
 ```
 
-2. Build the docker image
+2. Build and run docker compose
 ```bash
-docker build -t umilog .
-```
-
-3. Run the container fowarding on port 8000
-```bash
-docker run -p 8000:8000 umilog
+docker compose up --build
 ```
 
 ### Microcontroller (ESP8266)
@@ -65,6 +65,6 @@ On the Arduino IDE:
 
 1. Open the `.ino` file (in `src/umilog/umilog.ino`) in the Arduino IDE.
 2. Set the correct board and port (e.g., NodeMCU 1.0).
-3. Replace the placeholder Wi-Fi credentials in the sketch.
-4. Upload the code to the ESP8266.
-5. Ensure the FastAPI server is reachable at the IP and port defined in the sketch (`http://<host-ip>:8000/log`).
+3. Replace the placeholder Wi-Fi credentials and host-ip in the sketch. 
+4. Remove the `#include "secrets.h"` line or create a secrets.h file with the credentials.
+5. Upload the code to the ESP8266.

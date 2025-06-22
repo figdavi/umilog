@@ -1,0 +1,12 @@
+services:
+  backend:
+    image: umilog
+    pull_policy: never
+    container_name: umilog_container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./data:/src/umilog/data
