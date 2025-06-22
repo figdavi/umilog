@@ -2,10 +2,12 @@ from pathlib import Path
 import sqlite3
 from datetime import datetime
 
-DATA_DIR = 'data'
+DATA_DIR = Path(__file__).parent / 'data'
 DB_FILE_NAME = 'sensor.sqlite3'
 
-DB_PATH = Path(__file__).parent / DATA_DIR / DB_FILE_NAME
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+DB_PATH = DATA_DIR / DB_FILE_NAME
 
 def get_connection():
     return sqlite3.connect(DB_PATH)
