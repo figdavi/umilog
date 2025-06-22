@@ -1,39 +1,40 @@
-from fastapi import FastAPI
-from datetime import datetime
-from pydantic import BaseModel
-from pathlib import Path
+# TODO: 
+# - setup docker
+# - add readme
+# - check commits for sensitive data
+# - upload to github (public)
 
-app = FastAPI()
+from fastapi import FastAPI, HTTPException
+from umilog.database import create_sensor_table, log_sensor_data
+from pydantic import BaseModel
 
 class SensorData(BaseModel):
-    soil_moisture: int
+    raw_soil_moisture: int
 
 MAX_SOIL_MOISTURE = 1023
+create_sensor_table()
+app = FastAPI()
 
-def format_soil_moisture(soil_moisture: int) -> float:
-    """Normalizes and inverts the range of the soil moisture value, since 0 means wet and 1023 means dry
+def format_soil_moisture(raw_soil_moisture: int) -> float:
+    """Normalizes and inverts the range of the raw soil moisture value, 
+    since 0 means wet and 1023 means dry
 
     Args:
-        soil_moisture (int): raw soil moisture data
+        raw_soil_moisture (int): raw soil moisture data
 
     Returns:
-        float: formatted soil moisture
+        float: formatted soil moisture data
     """    
-    return round(1 - (soil_moisture / MAX_SOIL_MOISTURE), 2)
+    return round(1 - (raw_soil_moisture / MAX_SOIL_MOISTURE), 2)
 
 @app.post("/log")
-def log(sensor_data: SensorData):
-    file_test = "sensor_data/output.txt"
-    
-    Path(file_test).parent.mkdir(parents=True, exist_ok=True)
-    
+def log_route(sensor_data: SensorData):
+    soil_moisture = format_soil_moisture(sensor_data.raw_soil_moisture)
+    try:
+        log_sensor_data(soil_moisture)
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=f"Failed to log data: {err}")
 
-    cur_time = datetime.now().replace(microsecond=0).isoformat()
-    
-    formatted_soil_moisture = format_soil_moisture(sensor_data.soil_moisture)
-    
-    with open(file_test, "a+") as f:
-        f.write(f"soil moisture percentage at {cur_time} is {formatted_soil_moisture}\n")
     return {"status": "logged"}
 
 @app.get("/")

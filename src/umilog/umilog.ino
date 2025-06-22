@@ -3,13 +3,16 @@
 #include <WiFiClient.h>
 
 WiFiClient wifiClient;
+HTTPClient http;
 
 #define SENSOR_PIN A0
 
-const char* ssid = "XXXX";
-const char* password = "****";
+const char* ssid = "<YOUR_WIFI_SSID>";
+const char* password = "<YOUR_WIFI_PASSWORD>";
+const char* server = "http://<YOUR_LOCAL_SERVER_IPv4>:8000/log";
 
-const char* server = "http://192.168.1.26:8000/log";
+// Send sensor data every 30 minutes
+const int log_delay = 30*60*1000
 
 void setup() {
   Serial.begin(115200);
@@ -23,27 +26,24 @@ void setup() {
 }
 
 void loop() {
-  int soilMoisture = analogRead(SENSOR_PIN);
-  Serial.print("Soil Moisture: ");
-  Serial.println(soilMoisture);
+  HTTPClient http;
+  int rawSoilMoisture = analogRead(SENSOR_PIN);
 
   if (WiFi.status() == WL_CONNECTED) {
-    HTTPClient http;
-
     http.begin(wifiClient, server);
     http.addHeader("Content-Type", "application/json");
 
-    String payload = "{\"soil_moisture\": " + String(soilMoisture) + "}";
+    String payload = "{\"raw_soil_moisture\": " + String(rawSoilMoisture) + "}";
+    Serial.println(payload);
 
     int httpCode = http.POST(payload);
     String response = http.getString();
 
-    Serial.print("HTTP Response code: ");
-    Serial.println(httpCode);
+    Serial.println("HTTP Response code: " + httpCode);
     Serial.println("Response: " + response);
 
     http.end();
   }
 
-  delay(5000);
+  delay(log_delay);
 }
