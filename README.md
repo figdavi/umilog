@@ -36,7 +36,7 @@ This project contains both the backend and the .ino file for the ESP8266.
 - Docker ([Download Page](https://docs.docker.com/get-docker/))
 - Arduino IDE (for uploading the `.ino` file) ([Download Page](https://www.arduino.cc/en/software/))
 
-### Backend
+### FastAPI Container
 
 1. Clone the repository
 ```bash
