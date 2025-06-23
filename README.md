@@ -26,12 +26,11 @@ This project contains both the backend and the .ino file for the ESP8266.
 
 
 ```
-- Note: A file named `sensor.sqlite3` will be created automatically on first run to store sensor data inside `data/` folder.
+- **Note**: A file named `sensor.sqlite3` will be created automatically on first run to store sensor data inside `data/` folder.
 
 
 ## Run locally
 
-### Requirements
 
 - Docker ([Download Page](https://docs.docker.com/get-docker/))
 - Arduino IDE (for uploading the `.ino` file) ([Download Page](https://www.arduino.cc/en/software/))
@@ -50,8 +49,6 @@ docker compose up --build
 ```
 
 ### Microcontroller (ESP8266)
-
-#### Arduino Library Requirements
 
 All libraries are already part of the core package for the ESP8266 board. 
 
