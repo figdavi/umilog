@@ -31,6 +31,7 @@ This project contains both the backend and the .ino file for the ESP8266.
 
 ## Run locally
 
+### Requirements
 
 - Docker ([Download Page](https://docs.docker.com/get-docker/))
 - Arduino IDE (for uploading the `.ino` file) ([Download Page](https://www.arduino.cc/en/software/))
@@ -50,7 +51,7 @@ docker compose up --build
 
 ### Microcontroller (ESP8266)
 
-All libraries are already part of the core package for the ESP8266 board. 
+All libraries used are already part of the core package for the ESP8266 board. 
 
 On the Arduino IDE:
 
