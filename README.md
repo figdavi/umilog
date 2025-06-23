@@ -5,7 +5,7 @@ This project contains both the backend and the .ino file for the ESP8266.
 
 ## How it works
 
-<img src="simple_diagram.png" width=500>
+![](simple_diagram.png)
 
 ## Project structure
 ```tree
