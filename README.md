@@ -26,7 +26,7 @@ This project contains both the backend and the .ino file for the ESP8266.
 
 
 ```
-- Note: the `data/` folder will be created automatically on first run to store sensor data, along with the `sensor.sqlite3` file (SQLite DB).
+- Note: A file named `sensor.sqlite3` will be created automatically on first run to store sensor data inside `data/` folder.
 
 
 ## Run locally

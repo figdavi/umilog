@@ -44,8 +44,5 @@ coverage.xml
 .pytest_cache/
 .cache/
 
-# Custom folders
-data/
-
 # Sensitive data
 secrets.h

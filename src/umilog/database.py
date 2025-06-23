@@ -2,10 +2,8 @@ from pathlib import Path
 import sqlite3
 from datetime import datetime
 
-DATA_DIR = Path(__file__).parent / 'data'
 DB_FILE_NAME = 'sensor.sqlite3'
-
-DATA_DIR.mkdir(parents=True, exist_ok=True)
+DATA_DIR = Path('/data')
 
 DB_PATH = DATA_DIR / DB_FILE_NAME
 
